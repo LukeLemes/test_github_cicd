@@ -1,13 +1,13 @@
 ---
-name: checklist
+name: checklist workflow
 on:
   push:
     branches: ['testing']
 jobs:
   checklist:
-    environment: 'manual_approval'
     runs-on: ubuntu-latest
-    name: check env and settings
+    environment: 'manual_approval'
+    name: Check env and settings
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -17,3 +17,12 @@ jobs:
       - name: Check settings
         run: |
           make -s check_settings
+  runlist:
+    runs-on: ubuntu-latest
+    needs: 'checklist'
+    name: Get deployment env
+    steps:
+      - name: Step 1
+        run: |
+          cat ${{ github.env }}
+          cat ${{ github.vars }}

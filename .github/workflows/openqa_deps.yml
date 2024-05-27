@@ -4,16 +4,14 @@ on:
   pull_request_target:
   workflow_dispatch:
 jobs:
-  manual_approval_wait:
+  compile_test:
     runs-on: ubuntu-latest
-    environment: manual_approval
     steps:
-      - name: manual approval check
-        run: |
-          echo 'Manual approval OK'
+      - uses: ./github/workflows/ci_workflow_call.yml
   trigger_and_monitor_openqa:
     runs-on: ubuntu-latest
-    needs: manual_approval_wait
+    needs: compile_test
+    environment: 'manual_approval'
     steps:
       - uses: actions/checkout@v3
       - name: openQA init
@@ -25,7 +23,8 @@ jobs:
           make -s openQA_trigger
   clone_mentioned_job:
     runs-on: ubuntu-latest
-    needs: manual_approval_wait
+    needs: compile_test
+    environment: 'manual_approval'
     steps:
       - name: Clone and monitor job mentioned in PR description
         run: |

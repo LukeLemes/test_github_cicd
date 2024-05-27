@@ -53,3 +53,4 @@ openQA_trigger:
 hello:
 	echo 'Hello world!'
 	echo 'Done.'
+	
