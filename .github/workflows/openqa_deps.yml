@@ -6,7 +6,6 @@ on:
 jobs:
   compile_test:
     runs-on: ubuntu-latest
-    name:
     steps:
       - uses: ./github/workflows/ci_workflow_call.yml
   trigger_and_monitor_openqa:

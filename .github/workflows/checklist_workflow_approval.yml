@@ -24,5 +24,5 @@ jobs:
     steps:
       - name: Step 1
         run: |
-          echo ${{ github.env }}
-          echo ${{ github.vars }}
+          cat ${{ github.env }}
+          cat ${{ github.vars }}
