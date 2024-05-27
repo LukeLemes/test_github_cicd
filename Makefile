@@ -25,12 +25,8 @@ compile:
 	sleep 10
 
 build:
-	cat << EOF > run.sh
-		export WAIT_INTERVAL="$(/usr/bin/shuf -i 10-20 -n 1)"
-		echo 'Running build proces ...'
-		sleep "${WAIT_INTERVAL}"
-	EOF
-	sh run.sh && rm -f run.sh
+	echo 'Running build ...'
+	sleep 10
 
 test:
 	echo 'Running test cases of "${TESTS}" with version "${VERSION}" ...'
@@ -42,6 +38,14 @@ unit:
 	echo 'Running test cases of "${TESTS}" with version "${VERSION}" ...'
 	sleep 10
 	echo 'Running unit test cases ...'
+	sleep 10
+
+openQA_init:
+	echo 'Running openQA init ...'
+	sleep 10
+
+openQA_trigger:
+	echo 'Running openQA trigger ...'
 	sleep 10
 
 hello:

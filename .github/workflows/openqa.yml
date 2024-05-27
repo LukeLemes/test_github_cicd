@@ -1,0 +1,28 @@
+---
+name: Run a basic openQA test
+on:
+  pull_request_target:
+  # Note how this runs on:pull_request_target and not on:pull_request!
+  # The difference is that this runs always with the context of the master
+  # branch. This is necessary to allow accessing the API credential secrets.
+  workflow_dispatch:
+jobs:
+  trigger_and_monitor_openqa:
+    runs-on: ubuntu-latest
+    environment: manual_approval
+    steps:
+      - uses: actions/checkout@v3
+      - name: openQA init
+        id: latest_build
+        run: |
+          make -s openQA_init
+      - name: openQA trigger
+        run: |
+          make -s openQA_trigger
+  clone_mentioned_job:
+    runs-on: ubuntu-latest
+    environment: manual_approval
+    steps:
+      - name: Clone and monitor job mentioned in PR description
+        run: |
+          make -s hello
