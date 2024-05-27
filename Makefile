@@ -7,6 +7,8 @@ check_settings:
 	echo "Github path:          ${GITHUB_PATH}"
 	echo "Github env:           ${GITHUB_ENV}"
 	echo "Github workspace:     ${GITHUB_WORKSPACE}"
+	echo "Github actor:			${GITHUB_ACTOR}"
+	echo "Github trigger actor:	${GITHUB_TRIGGERING_ACTOR}"
 	echo '============================================='
 	echo "Github workflow:      ${GITHUB_WORKFLOW}"
 	echo "Github workflow_ref:  ${GITHUB_WORKFLOW_REF}"
