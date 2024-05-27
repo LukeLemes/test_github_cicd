@@ -1,0 +1,24 @@
+name: ci
+on: [push, pull_request_target]
+jobs:
+  compile_unit_static_tests:
+    environment: 'compile_unit_static_tests'
+    runs-on: ubuntu-latest
+    name: "CI: Running ${{ matrix.test }} tests with perl v${{ matrix.perl-version }}"
+    strategy:
+      matrix:
+        include:
+          - test: test
+            perl-version: 5.32
+          - test: unit
+            perl-version: 5.32
+          - test: compile
+            perl-version: 5.26
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run ${{ matrix.test }} tests
+      env:
+        TESTS: ${{ matrix.test }}
+        VERSION: ${{ matrix.perl-version }}
+      run: |
+        make -s "${TESTS}"

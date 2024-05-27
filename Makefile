@@ -21,22 +21,24 @@ check_settings:
 	echo "Github event name:    ${GITHUB_EVENT_NAME}"
 
 compile:
-	WAIT_INTERVAL="$(shuf -i 10-20 -n 1)"
-	echo 'Running comiple source codes ...'
-	sleep "${WAIT_INTERVAL}"
+	echo 'Running comiple source codes of "${TESTS}" with version "${VERSION}" ...'
+	sleep 10
 
 build:
-	WAIT_INTERVAL="$(shuf -i 10-20 -n 1)"
 	echo 'Running build proces ...'
-	sleep "${WAIT_INTERVAL}"
+	sleep 10
 
 test:
-	WAIT_INTERVAL="$(shuf -i 10-20 -n 1)"
-	echo 'Running test cases ...'
-	echo 'Running static test cases ...'
-	sleep "${WAIT_INTERVAL}"
+	echo 'Running test cases of "${TESTS}" with version "${VERSION}" ...'
+	sleep 10
 	echo 'Running unit test cases ...'
-	sleep "${WAIT_INTERVAL}"
+	sleep 10
+
+unit:
+	echo 'Running test cases of "${TESTS}" with version "${VERSION}" ...'
+	sleep 10
+	echo 'Running unit test cases ...'
+	sleep 10
 
 hello:
 	echo 'Hello world!'
