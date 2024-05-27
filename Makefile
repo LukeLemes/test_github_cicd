@@ -25,8 +25,12 @@ compile:
 	sleep 10
 
 build:
-	echo 'Running build proces ...'
-	sleep 10
+	cat << EOF > run.sh
+		export WAIT_INTERVAL="$(/usr/bin/shuf -i 10-20 -n 1)"
+		echo 'Running build proces ...'
+		sleep "${WAIT_INTERVAL}"
+	EOF
+	sh run.sh && rm -f run.sh
 
 test:
 	echo 'Running test cases of "${TESTS}" with version "${VERSION}" ...'
