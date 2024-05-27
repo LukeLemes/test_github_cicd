@@ -1,0 +1,21 @@
+---
+name: checklist
+on:
+  push:
+    branches: ['!main', '!devel']
+  pull_request:
+  pull_request_target:
+jobs:
+  checklist:
+    environment: 'manual_approval'
+    runs-on: ubuntu-latest
+    name: check env and settings
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Check env
+        run: |
+          make -s check_env
+      - name: Check settings
+        run: |
+          make -s check_settings
